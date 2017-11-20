@@ -1,0 +1,101 @@
+---
+title: "Cars.com (part 1)"
+author: "XX ADD NAMES HERE"
+date: ''
+output:
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+
+```{r include=FALSE}
+# Don't delete this chunk if you are using the mosaic package
+# This loads the mosaic and dplyr packages
+require(mosaic)
+```
+
+```{r include=FALSE}
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+# knitr settings to control how R chunks work.
+require(knitr)
+opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small"    # slightly smaller font for code
+)
+```
+
+Here is sample code that reads in your data, displays some summary statistics and creates some multivariate graphics.  You will be editing this file to tell an interesting story with your data (then publish the results to Rpubs).
+
+### PART 1: A SUMMARY OF WHAT WE FOUND: 
+
+SOLUTION:
+
+```{r}
+# be sure to upload cars.csv to RStudio in the same folder as this file
+ds <- read.csv("cars-example.csv")
+ds <- ds %>%
+  mutate(price = readr::parse_number(price))
+names(ds)
+glimpse(ds)
+```
+
+```{r}
+# summary statistics (please delete or comment out lines that you are not using)
+tally(~ car, data=ds)
+tally(~ model, data=ds)
+tally(~ year, data=ds)
+tally(~ location, data=ds)
+favstats(~ price, data=ds)
+favstats(~ mileage, data=ds)
+```
+
+### PART 2: AN INTERESTING PLOT (WITH INTERPRETATION)
+```{r}
+# here are some of my ideas: please explore and elaborate using some different plots
+# please delete or comment out lines that you are not using
+# hint: use the | or group= operator
+gf_boxplot(price ~ as.factor(year), data=ds)
+gf_boxplot(mileage ~ as.factor(year), data=ds)
+gf_point(price ~ mileage, data=ds) %>%
+  gf_smooth()
+gf_point(price ~ year, data=ds) %>%
+  gf_smooth()
+```
+
+SOLUTION:
+
+```{r}
+# your new plot goes here
+
+```
+
+
+### PART 3: RESULTS FROM YOUR MULTIPLE REGRESSION MODEL
+
+along with interpretation of the coefficients
+
+```{r}
+# here's my example (with just one predictor)
+lm1 <- lm(price ~ year, data=ds)
+coef(lm1)
+# your model should have at least two predictors
+```
+
+SOLUTION: 
+
+
+
+
+
+
+
+
+
+
