@@ -35,4 +35,6 @@ In this webinar, I will describe a classroom activity where pairs of students ha
 - [slides2017-11.pdf](https://github.com/Amherst-Statistics/Cars-Scraping-Webinar/blob/master/slides2017-11.pdf)
 
 
+This work derived from [Project MOSAIC](https://www.mosaic-web.org), an National Science Foundation (# 0920350) funded initiative to develop a new way to introduce mathematics, statistics, computation and modeling to students in colleges and universities.
+
 Last updated November 20, 2017.

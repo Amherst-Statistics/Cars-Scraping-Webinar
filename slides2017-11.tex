@@ -20,8 +20,8 @@
 \renewcommand\cdot{\mathop{\raise-1pt\hbox{$^{_\bullet}$}}}
 
 \renewcommand\today{November 21, 2017}
-\title[cars.com]{
-Data scraping, ingestation, and modeling: bringing data from cars.com into the intro stats class}
+\title[cars.com and intro stats]{
+Data scraping, ingestation, and modeling: bringing cars.com into the intro stats class}
 \author{Nicholas J. Horton}
 \institute{{\large Department of Mathematics and Statistics \\Amherst College, Amherst, MA, USA}}
 \date{CAUSE webinar, \today}
@@ -75,7 +75,7 @@ http://nhorton.people.amherst.edu, https://github.com/Amherst-Statistics/Cars-Sc
 
 \frame{
 \frametitle{Cars, cars, and more cars}
-\includegraphics[scale=0.52]{cars.png}
+\includegraphics[scale=0.52]{images/cars.png}
 }
 
 \frame{
@@ -113,14 +113,120 @@ http://nhorton.people.amherst.edu, https://github.com/Amherst-Statistics/Cars-Sc
 \frame{
 \frametitle{Motivation for multivariate thinking}
 \begin{itemize}
-\item How much do cars cost?
-\item How much do car prices vary?
-\item How are car prices associated with mileage?
-\item How are car prices associated with age?
-\item How quickly do new cars depreciate?
-\item How much does it cost for a car to drive a mile?
+\item We live in a multivariate world
+\item If intro stats only addresses bivariate questions (e.g., two-sample t-test) we risk becoming irrelevant
+\item Straightforward to consider multivariate visualizations
+and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativity")
+\item \emph{R Journal}: \url{https://journal.r-project.org/archive/2017/RJ-2017-024}
 \end{itemize}
 }
+
+\frame{
+\frametitle{Cars.com Activity}
+\begin{description}
+\item[Groups] of size two
+\item[Duration] one or two 50-minute class periods
+\item[Requirements] one computer per student
+\item[Software] R/RStudio and Excel or Open Office
+\item[Motivation] Why might we care about car prices?
+\end{description}
+}
+
+\frame{
+\frametitle{Cars.com Activity}
+\begin{description}
+\item[Group] is given a major city in the US (e.g., Atlanta or Los Angeles)
+\item[Person 1] searches \url{cars.com} for used Toyota Prius cars on offer within 50 miles of that city
+\item[Person 2] downloads the template {\tt cars.csv} spreadsheet and open it up on their computer
+\item[Person 1] reads out car models, year, mileage, and price
+\item[Person 2] enters the values into the spreadsheet and reads them out for Person 1 to check
+\item[Continue] until 40 cars have been entered (note that some groups will be really slow, so may only yield 20-25 cars)
+\item[Person 2] emails Person 1 the {\tt cars.csv} spreadsheet then both members upload this into RStudio
+\end{description}
+}
+
+\frame{
+\frametitle{Cars.com analysis (part 1)}
+\begin{itemize}
+\item The file {\tt student.Rmd} reads {\tt cars.csv}
+\item Generates descriptive statistics (for data quality assessment, e.g., using \$ in price)
+\item Create visual multivariate displays (e.g., mileage by year)
+\item Fit regression model and display coefficients
+\end{itemize}
+}
+
+\frame{
+\frametitle{Cars.com analysis (part 2)}
+\begin{itemize}
+\item Once {\tt student.Rmd} runs without error, the creative step begins
+\item Students need to find an interesting display and fit a multiple regression model
+\item Goal is to make an insight
+\item Publish this on \url{rpubs.com} using a class-wide login provided by the instructor
+\item Quickly review several of these to see insights
+\item Deliverable: full credit for email to instructor (cc-ed to group partner) of modified {\tt student.Rmd} and {\tt cars.csv} files
+\end{itemize}
+}
+
+\frame{
+\frametitle{Examples}
+\includegraphics[scale=0.52]{images/cars-glimpse.png}
+}
+\frame{
+\frametitle{Examples}
+\includegraphics[scale=0.42]{images/cars-favstats.png}
+}
+\frame{
+\frametitle{Examples}
+\includegraphics[scale=0.35]{images/cars-box.png}
+}
+\frame{
+\frametitle{Examples}
+\includegraphics[scale=0.52]{images/cars-scat.png}
+}
+
+\frame{
+\frametitle{Cars.com followup (next class)}
+\begin{itemize}
+\item Collate individual group data into {\tt carscollated2017.csv}
+\item Perform data cleaning (e.g., numeric zip code rather than city)
+\item Add location to the multiple regression model
+\item Practice interpreting regression models with categorical predictors
+\item Practice interpreting regression models with interactions between mileage and year
+\item Seek insights: depreciation dramatic for new cars
+\end{itemize}
+}
+
+\frame{
+\frametitle{Tom and Ray Magliozzi}
+\includegraphics[scale=0.39]{images/magliozzi.png}
+}
+
+\frame{
+\frametitle{Cars.com followup}
+\includegraphics[scale=0.64]{images/cars-tally.png}
+}
+
+\frame{
+\frametitle{Cars.com followup}
+\includegraphics[scale=0.74]{images/cars-reg.png}
+}
+
+\frame{
+\frametitle{Cars.com followup}
+\includegraphics[scale=0.63]{images/cars-fun.png}
+}
+
+\frame{
+\frametitle{Extension}
+\begin{itemize}
+\item Interpreting model is a great exam question
+\item Residual diagnostics
+\item Outlier detection
+\item Account for different car models (sparsity and inconsistent coding)
+\item Automate data scraping
+\end{itemize}
+}
+
 
 \frame{
 \frametitle{Closing thoughts}

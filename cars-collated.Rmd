@@ -84,8 +84,8 @@ ds <- ds %>%
 ```
 
 ```{r}
-tally(~ year, data=ds)
-tally(~ location, data=ds)
+tally(~ year, margins=TRUE, data=ds)
+tally(~ location, margins=TRUE, data=ds)
 ds <- filter(ds, year > 2010, year < 2017)  # drop new cars and really old cars
 ```
 
@@ -144,6 +144,16 @@ SOLUTION:
 
 ```
 \newpage
+
+```{r}
+carfun <- makeFun(mod)
+carfun(year=2016, mileage=1000, location='Tampa')
+carfun(year=2016, mileage=1000, location='Tampa') - 
+carfun(year=2016, mileage=1001, location='Tampa')
+carfun(year=2012, mileage=1000, location='Tampa') - 
+carfun(year=2012, mileage=1001, location='Tampa')
+```
+
 ```{r}
 ds <- mutate(ds, fitted = predict(mod), resid = resid(mod))
 filter(ds, resid(mod)< -10000)
