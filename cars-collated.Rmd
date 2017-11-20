@@ -90,8 +90,9 @@ ds <- filter(ds, year > 2010, year < 2017)  # drop new cars and really old cars
 ```
 
 ```{r fig.height=5}
-gf_point(price ~ mileage, color = ~ year, data = ds) %>%
-  gf_lm()
+gf_point(price ~ mileage, color = ~ as.factor(year), data = ds) %>%
+  gf_lm() %>%
+  gf_lims(y = c(0, 34000)) 
 ```
 
 #### a) interpret what insights you can make from the scatterplot
