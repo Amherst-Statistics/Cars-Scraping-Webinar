@@ -58,7 +58,7 @@ favstats(~ mileage, data=ds)
 ```
 
 ### PART 2: AN INTERESTING PLOT (WITH INTERPRETATION)
-```{r}
+```{r warning=FALSE}
 # here are some of my ideas: please explore and elaborate using some different plots
 # please delete or comment out lines that you are not using
 # hint: use the | or group= operator
