@@ -67,7 +67,7 @@ http://nhorton.people.amherst.edu https://github.com/Amherst-Statistics/Cars-Scr
 \begin{itemize}
 \item I will describe a classroom activity where pairs of students hand scrape data from cars.com, ingest these data into R, then carry out analyses of the relationships between price, mileage, and model year for a selected type of car. 
 \item This early in the semester activity can help illustrate the statistical problem solving process. 
-\item The ``Less Volume, More Creativity" approach utilized by the mosaic package facilitates the analysis with a minimal amount of syntax. 
+\item The ``Less Volume, More Creativity" approach utilized by the {\tt mosaic} and {\tt ggformula} packages facilitates the analysis with a minimal amount of syntax. 
 \item Key concepts that are introduced and reinforced including data ingestion, multivariate thinking through graphical visualizations, and regression modeling. 
 \item Extensions and additional use of the dataset will be discussed along with potential pitfalls.
 \end{itemize}
@@ -86,7 +86,7 @@ http://nhorton.people.amherst.edu https://github.com/Amherst-Statistics/Cars-Scr
 \item How are car prices associated with mileage?
 \item How are car prices associated with age?
 \item How quickly do new cars depreciate?
-\item How much does it cost for a car to drive a mile?
+\item How much does it cost to drive a car one mile?
 \end{itemize}
 }
 
@@ -127,7 +127,7 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 \item[Groups] of size two
 \item[Duration] one or two 50-minute class periods
 \item[Requirements] one computer per student
-\item[Software] R/RStudio and Excel or Open Office
+\item[Software] R/RStudio and Excel, Open Office, or Google Spreadsheet
 \item[Motivation] Why might we care about car prices?
 \end{description}
 }
@@ -151,7 +151,8 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 \item The file {\tt student.Rmd} reads {\tt cars.csv}
 \item Generates descriptive statistics (for data quality assessment, e.g., using \$ in price)
 \item Create visual multivariate displays (e.g., mileage by year)
-\item Fit regression model and display coefficients
+\item Fit regression model and report coefficients
+\item Scaffolding for additional analyses by the group
 \end{itemize}
 }
 
@@ -181,7 +182,7 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 }
 \frame{
 \frametitle{Examples}
-\includegraphics[scale=0.52]{images/cars-scat.png}
+\includegraphics[scale=0.59]{images/cars-scat.png}
 }
 
 \frame{
@@ -208,7 +209,7 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 
 \frame{
 \frametitle{Cars.com followup}
-\includegraphics[scale=0.74]{images/cars-reg.png}
+\includegraphics[scale=0.82]{images/cars-reg.png}
 }
 
 \frame{
@@ -224,9 +225,9 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 \frame{
 \frametitle{Extension}
 \begin{itemize}
-\item Interpreting model is a great exam question
+\item Interpreting this model as an exam question
 \item Residual diagnostics
-\item Functional form of relationship
+\item Functional form of relationship (non-linear?)
 \item Outlier detection
 \item Account for different car models (sparsity and inconsistent coding)
 \item Automate data scraping
@@ -239,12 +240,12 @@ and fit multiple regression models (Project MOSAIC ``Less Volume, More Creativit
 \item Teach statistical thinking.
 \begin{itemize}
 \item Teach statistics as an investigative process of problem-solving and decision-making.
-\item Give students experience with \emph{multivariable thinking}.
+\item {\bf Give students experience with \emph{multivariable thinking}.}
 \end{itemize}
 \item Focus on conceptual understanding.
-\item Integrate real data with a context and purpose.
-\item Foster active learning.
-\item Use technology to explore concepts and analyze data.
+\item {\bf Integrate real data with a context and purpose.}
+\item {\bf Foster active learning.}
+\item {\bf Use technology to explore concepts and analyze data.}
 \item Use assessments to improve and evaluate student learning.
 \end{enumerate}
 }
