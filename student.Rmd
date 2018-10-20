@@ -1,12 +1,12 @@
 ---
 title: "Cars.com (part 1)"
 author: "XX ADD NAMES HERE"
-date: ''
+date: 'October 20, 2018'
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -18,11 +18,11 @@ output:
 ```{r include=FALSE}
 # Don't delete this chunk if you are using the mosaic package
 # This loads the mosaic and dplyr packages
-require(mosaic)
+library(mosaic)
+library(readr)
 ```
 
 ```{r include=FALSE}
-# Some customization.  You can alter or delete as desired (if you know what you are doing).
 # knitr settings to control how R chunks work.
 require(knitr)
 opts_chunk$set(
@@ -31,43 +31,41 @@ opts_chunk$set(
 )
 ```
 
-Here is sample code that reads in your data, displays some summary statistics and creates some multivariate graphics.  You will be editing this file to tell an interesting story with your data (then publish the results to Rpubs).
-
 ### PART 1: A SUMMARY OF WHAT WE FOUND: 
 
 SOLUTION:
 
 ```{r}
 # be sure to upload cars.csv to RStudio in the same folder as this file
-# ds <- read.csv("cars.csv")
-ds <- read.csv("carscollated2017.csv")
-ds <- ds %>%
-  mutate(price = readr::parse_number(price))
+ds <- read_csv("cars.csv")
+ds <- mutate(ds, yearchar = as.character(year),
+                 year = readr::parse_number(year))
 names(ds)
-glimpse(ds)
 ```
 
+\newpage
+
+### PART 2: A SUMMARY OF TWO VARIABLES
 ```{r}
-# summary statistics (please delete or comment out lines that you are not using)
-tally(~ car, data=ds)
-tally(~ model, data=ds)
-tally(~ year, data=ds)
-tally(~ location, data=ds)
-favstats(~ price, data=ds)
-favstats(~ mileage, data=ds)
+# summary statistics (please delete those that you are not using)
+tally(~ car, data = ds)
+tally(~ model, data = ds)
+tally(~ year, data = ds)
+tally(~ location, data = ds)
+favstats(~ price, data = ds)
+favstats(~ mileage, data = ds)
 ```
 
-### PART 2: AN INTERESTING PLOT (WITH INTERPRETATION)
+\newpage
+
+### PART 3: AN INTERESTING PLOT (WITH INTERPRETATION)
 ```{r warning=FALSE}
 # here are some of my ideas: please explore and elaborate using some different plots
-# please delete or comment out lines that you are not using
-# hint: use the | or group= operator
-gf_boxplot(price ~ as.factor(year), data=ds)
-gf_boxplot(mileage ~ as.factor(year), data=ds)
-gf_point(price ~ mileage, data=ds) %>%
-  gf_smooth()
-gf_point(price ~ year, data=ds) %>%
-  gf_smooth()
+# be sure to remove these examples
+gf_boxplot(price ~ as.factor(year), data = ds)
+gf_boxplot(mileage ~ yearchar, data = ds)
+gf_point(price ~ mileage, data = ds) %>% gf_lm() %>% gf_smooth(se = FALSE)
+gf_point(price ~ year, data = ds) %>% gf_lm() %>% gf_smooth(se = FALSE)
 ```
 
 SOLUTION:
@@ -77,19 +75,22 @@ SOLUTION:
 
 ```
 
+\newpage
 
-### PART 3: RESULTS FROM YOUR MULTIPLE REGRESSION MODEL
+
+### PART 4: RESULTS FROM YOUR MULTIPLE REGRESSION MODEL
 
 along with interpretation of the coefficients
 
 ```{r}
 # here's my example (with just one predictor)
-lm1 <- lm(price ~ year, data=ds)
+lm1 <- lm(price ~ year, data = ds)
 coef(lm1)
-# your model should have at least two predictors
+# your model should have at least two predictors!
 ```
 
 SOLUTION: 
+
 
 
 

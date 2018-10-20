@@ -1,7 +1,7 @@
 ---
 title: 'STAT135: Confidence intervals and more cars'
 author: "Nicholas Horton (nhorton@amherst.edu)"
-date: "March 10, 2017"
+date: "May 29, 2018"
 output:
   pdf_document:
     fig_height: 3.0
@@ -24,7 +24,6 @@ options(digits=3)
 ```
 
 ```{r, include=FALSE}
-# Some customization.  You can alter or delete as desired (if you know what you are doing).
 # knitr settings to control how R chunks work.
 require(knitr)
 opts_chunk$set(
@@ -32,6 +31,7 @@ opts_chunk$set(
   size="small"    # slightly smaller font for code
 )
 # This loads the mosaic data sets.  (Could be deleted if you are not using them.)
+require(mosaicData)                
 library(readr)
 ```
 
@@ -77,22 +77,22 @@ d) It is impossible to obtain the same margin of error with the two different co
 #### More cars
 
 ```{r message=FALSE}
-ds <- read_csv("carscollated2017.csv")
-ds <- ds %>%
-  mutate(price = readr::parse_number(price))
-
+ds <- read_csv("http://nhorton.people.amherst.edu/workshop/carscollated2017.csv")
+ds <- mutate(ds, yearchar = as.character(year))
 ```
 
 ```{r}
-tally(~ year, margins=TRUE, data=ds)
-tally(~ location, margins=TRUE, data=ds)
+tally(~ year, data=ds)
+tally(~ location, data=ds)
+
 ds <- filter(ds, year > 2010, year < 2017)  # drop new cars and really old cars
+
 ```
 
 ```{r fig.height=5}
-gf_point(price ~ mileage, color = ~ as.factor(year), data = ds) %>%
-  gf_lm() %>%
-  gf_lims(y = c(0, 34000)) 
+gf_point(price ~ mileage, color = ~ yearchar, title = "Price vs Mileage", 
+         data = ds) %>%
+  gf_lm()
 ```
 
 #### a) interpret what insights you can make from the scatterplot
@@ -110,7 +110,7 @@ SOLUTION:
 
 ```{r}
 options(scipen=5, show.signif.stars=FALSE, digits=4)
-mod <- lm(price ~ location + mileage + as.factor(year) + mileage*as.factor(year), data=ds)
+mod <- lm(price ~ location + mileage + yearchar + mileage*yearchar, data=ds)
 msummary(mod)
 ```
 
@@ -127,15 +127,27 @@ SOLUTION:
 
 ```
 
+#### c) Predicted values
+
+```{r}
+modfun <- makeFun(mod)
+modfun(location = "Chicago", mileage = 0, yearchar = "2016")
+```
+
+
 ```{r results="hide"}
 mplot(mod, which=1)   # Figure 1
-histogram(~ resid(mod), fit="normal", width=750, main="Figure 2", xlab="residuals from the model")
-xyplot(resid(mod) ~ mileage, type=c("p", "r", "smooth"), ylab="residuals from the model", 
-  main="Figure 3", data=ds)
+gf_dhistogram(~ resid(mod), fit="normal", binwidth = 750, 
+             main="Figure 2", xlab="residuals from the model") %>%
+  gf_fitdistr()
+gf_point(resid(mod) ~ mileage, ylab="residuals from the model", 
+  main="Figure 3", data=ds) %>%
+  gf_lm() %>%
+  gf_smooth(se = FALSE)
 mplot(mod, which=3)  # Figure 4
 ```
 
-#### c) interpret the regression diagnostics 
+#### d) interpret the regression diagnostics 
 (be sure to specify which assumption is being verified using which figure)
 
 SOLUTION:
@@ -145,22 +157,12 @@ SOLUTION:
 
 ```
 \newpage
-
-```{r}
-carfun <- makeFun(mod)
-carfun(year=2016, mileage=1000, location='Tampa')
-carfun(year=2016, mileage=1000, location='Tampa') - 
-carfun(year=2016, mileage=1001, location='Tampa')
-carfun(year=2012, mileage=1000, location='Tampa') - 
-carfun(year=2012, mileage=1001, location='Tampa')
-```
-
 ```{r}
 ds <- mutate(ds, fitted = predict(mod), resid = resid(mod))
 filter(ds, resid(mod)< -10000)
 ```
 
-#### d) what might we conclude about the large residuals?
+#### e) what might we conclude about the large residuals?
 
 SOLUTION:
 ```
