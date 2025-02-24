@@ -1,0 +1,99 @@
+---
+title: "Cars.com (part 1)"
+author: "XX NAMES HERE"
+date: "2025-02-XX"
+date-format: iso
+format: pdf
+toc: true
+editor: source
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(mosaic)   
+library(tidyverse)
+options(scipen = 5)
+```
+
+This assignment is due by the end of the day on Thursday, February 27th.
+Please submit as a group assignment on Moodle (including your partner).
+
+We collected prices on n = XX used Toyota Prius's from cars.com within a XX mile radius of XX (zip code YY).
+
+### STEP 1: Summarize/check what you entered
+
+SOLUTION:
+
+```{r}
+#| message: false
+# be sure to upload cars.csv to RStudio in the same folder as this file
+ds <- read_csv("cars.csv")
+ds <- ds |>
+  mutate(
+    year_char = as.character(year)
+  )
+glimpse(ds)
+```
+
+```{r}
+# some summary statistics (please delete those that you are not using)
+tally(~ car, data = ds)
+tally(~ model, data = ds)
+tally(~ year, data = ds)
+tally(~ location, data = ds)
+df_stats(~ price, data = ds)
+df_stats(~ mileage, data = ds)
+```
+
+SOLUTION: 
+
+XX summary of distribution of variable 1 XX
+
+XX summary of distribution of variable 2 XX
+
+\newpage
+
+### STEP 3: Generating an interestimg plot with at least three variables
+
+```{r}
+#| warning: false
+# here are some of my ideas: please explore and elaborate using some different plots
+# be sure to remove these examples
+gf_boxplot(price ~ year_char, data = ds)
+gf_boxplot(mileage ~ year_char, data = ds)
+gf_point(price ~ mileage, data = ds) |> 
+  gf_lm() |>
+  gf_smooth(se = FALSE)
+gf_point(price ~ year, data = ds) |> 
+  gf_lm() |>
+  gf_smooth(se = FALSE)
+```
+
+SOLUTION:
+
+```{r}
+# your new plot goes here
+
+```
+
+XX HERE IS OUR INTERESTIMG PLOT
+
+\newpage
+
+
+### STEP 4: Fit and interpret a multiple regression model
+
+
+```{r}
+# here's my example (with just one predictor)
+lm1 <- lm(price ~ year, data = ds)
+coef(lm1)
+# your model should have at least two predictors!
+```
+
+SOLUTION: 
+
+XX OUR INTERPRETATION HERE XX
+
+

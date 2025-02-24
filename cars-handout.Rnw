@@ -18,8 +18,8 @@
 \pagestyle{fancy}
 
 \lhead{\textsc{Nicholas Horton}}
-\chead{\textsc{STAT 135: Lecture Notes}}
-\rhead{\textsc{October 4, 2018}}
+\chead{\textsc{STAT 135: Cars.com}}
+\rhead{\textsc{February 25, 2025}}
 \lfoot{}
 \cfoot{}
 %\cfoot{\thepage}
@@ -36,27 +36,29 @@
 
 Car prices vary. They vary according to the model of car, the optional features in the car, the geographical location, and the respective bargaining abilities of the buyer and the seller.
 \newline \newline
-In this activity, you will work in groups of two to investigate the influence of a variety of factors on the asking price for at least 40 used cars using data collected from {\tt cars.com}. Record these in a spreadsheet (e.g., Google Sheets or Microsoft Excel) with six variables:
+In this activity, you will work in groups of two to investigate the influence of a variety of factors on the asking price for at least 25 USED (not new!) cars using data collected from {\tt cars.com}.
+Record these in a spreadsheet (e.g., Google Sheets or Microsoft Excel) with six variables:
 \begin{itemize}
 \item {\tt car}: will always be {\tt Toyota Prius}, you need to specify the city under ``Advanced Search"
 \item {\tt year}: Model year (restrict your scraping to used vehicles with model years between 2011 and 2017)
 \item {\tt price}: Price of the car provided as a number of dollars (no dollar sign, commas, etc.)
 \item {\tt model}: Model will always be Prius, the model name will typically be of the form {\tt none}, {\tt c}, {\tt plug-in}, {\tt v Two}, {\tt v Three}, {\tt v Four}, {\tt v Five} or similar.
 \item {\tt mileage}: Mileage (in miles)
-\item {\tt location}: Assigned geographical location (city name)
+\item {\tt location}: Assigned geographical location (name: you'll enter the zip code for your city when you search cars.com)
 \end{itemize}
 
-I have provided a template in {\tt cars.csv}. Recording this information in the spreadsheet will help in combining data for different types of Toyota Prius's. You will also need to identify a postal code for your specified city. 
+I have provided a template in {\tt cars.csv}.
+Recording this information in the spreadsheet will help in combining data for different types of Toyota Prius's. You will also need to identify a Zip (postal) code for your specified city. 
 \newline \newline
 Here's an example for the Mini Coopers (note that you'll be scraping data on Toyota Prius's):
 
 \includegraphics[scale=0.6]{cars.png}
 
 <<echo=FALSE>>=
-price = c(22500, 22500, 22165); mileage=c(9844, 13370, 16737);
-year = c(2012, 2011, 2012)
-location = rep("Amherst", 3); car = rep("Mini Cooper", 3); model=c("Base", "Base", "Base")
-ds = data.frame(car, model, price, year, mileage, location)
+price <- c(22500, 22500, 22165); mileage=c(9844, 13370, 16737);
+year <- c(2012, 2011, 2012)
+location <- rep("Amherst", 3); car = rep("Mini Cooper", 3); model=c("Base", "Base", "Base")
+ds <- data.frame(car, model, price, year, mileage, location)
 @
 <<>>=
 ds
@@ -64,9 +66,9 @@ ds
 
 \begin{enumerate}
 \item Save your spreadsheet as a {\tt .csv} file (I have provided a template as {\tt cars.csv}), then upload it to the RStudio server using the {\tt Upload} button on the {\tt Files} tab.
+Render the file and review the results: do the summary statistics make sense?  Are there any missing values? Please provide a terse summary of the distribution of two of your variables.
 
-\item Generate two plots of your data that represent an interesting relationship between two variables.  There are some examples to get you started in the R Markdown template {\tt cars.Rmd}.
-
+\item Generate a plot of your data that represent an interesting relationship between three variables.  There are some examples with two variables to get you started in the Quarto template {\tt cars.qmd}.
 
 \item Using the data that you scraped, build a simple multiple regression model for the patterns seen in used-car prices. Some basic bivariate claims that you might build from could be described as:
 \begin{enumerate}
@@ -77,19 +79,17 @@ ds
 (If you note errors in your coding of your data please fix them in the csv file and re-upload the data.)
 \end{enumerate}
 
-(Hint: you may want to set the option: {\tt options(scipen = 5)} to avoid scientific notation for some of your coefficients.)
+\vspace{.2in}
 
-\vspace{.3in}
-
-Your deliverable for this project will be your dataset (as a .csv file: please double check format), plus the formatted Markdown file from your
-analyses (pdf) and the source (Rmd) file, which includes:
+You will submit three deliverables for this project (1) your dataset (as a .csv file: please double check format), (2)formatted Quarto file from your
+analyses (pdf) and (3) the source (Quarto) file, which includes:
 \begin{enumerate}
-\item a brief summary of what you collected (an overview of what you collected: price, model, mileage and year from n=XX used Toyota Corollas for sale within YY miles of ZZ (your city),
+\item a brief summary of what you collected (an overview of what you collected: price, model, mileage and year from n=XX used Toyota Prius's for sale within YY miles of ZZ (your city and zip code),
 \item a summary of the distribution of two of the variables that you collected (for categorical variables counts and proportions; for continuous the usual summary of shape, center, and spread),
 \item an interesting plot (that uses at least three of the variables in the dataset), along with your interpretation, plus
 \item results from a single multiple regression model (with at least two predictors), along with interpretation of the coefficients from that model.
 \end{enumerate}
-Please be sure to upload these files to Moodle (cars submission) by the end of the day on Friday, October 5th.
+Please be sure to upload these files to Moodle (see "cars submission") as a group submission (with both names specified) by the end of the day on Thursday, February 27th.
 
 
 \end{document}
